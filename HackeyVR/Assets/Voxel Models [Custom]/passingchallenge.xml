@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<ScoreDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <scoreList>
+    <ScoreEntry>
+      <name>AAA</name>
+      <score>45</score>
+    </ScoreEntry>
+    <ScoreEntry>
+      <name>BBB</name>
+      <score>90</score>
+    </ScoreEntry>
+    <ScoreEntry>
+      <name>LLL</name>
+      <score>65</score>
+    </ScoreEntry>
+    <ScoreEntry>
+      <name>ABC</name>
+      <score>76</score>
+    </ScoreEntry>
+    <ScoreEntry>
+      <name>RRH</name>
+      <score>100</score>
+    </ScoreEntry>
+    <ScoreEntry>
+      <name>JHG</name>
+      <score>123</score>
+    </ScoreEntry>
+    <ScoreEntry>
+      <name>ERR</name>
+      <score>34</score>
+    </ScoreEntry>
+    <ScoreEntry>
+      <name>FAN</name>
+      <score>54</score>
+    </ScoreEntry>
+    <ScoreEntry>
+      <name>PFD</name>
+      <score>89</score>
+    </ScoreEntry>
+    <ScoreEntry>
+      <name>OCS</name>
+      <score>303</score>
+    </ScoreEntry>
+  </scoreList>
+</ScoreDatabase>
