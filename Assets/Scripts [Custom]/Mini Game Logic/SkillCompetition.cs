@@ -24,7 +24,7 @@ public abstract class SkillCompetition : MonoBehaviour
 
     public Text scoreClock;
 
-    public int playerScore;
+    public int playerScore = 0;
     public Text playerScoreText;
 
     public Text awayScore;
@@ -59,14 +59,21 @@ public abstract class SkillCompetition : MonoBehaviour
 
     // Start logic here
     protected virtual void Start() {
+        RestartGame();
+    }
+
+    public virtual void RestartGame()
+    {
         GameManager.Instance.SetPauseState(false);
         gameStarted = false;
         gameOver = false;
         skillCompTimer = 0;
         shotCount = 0;
-        SetHomeScoreText(0);
-        SetShotCountText(0);
-
+        playerScore = 0;
+        SetGameClockText("00:00");
+        SetHomeScoreText(playerScore);
+        SetShotCountText(shotCount);
+        
         AudioManager.Instance.PlayClip("whistle");
     }
 
@@ -77,15 +84,6 @@ public abstract class SkillCompetition : MonoBehaviour
             SetGameClockText(GameClock.CountdownTimer(skillCompTimer));
         }
 
-
-        if (Input.GetKeyUp(KeyCode.Alpha9)) {
-            GameManager.Instance.SetPauseState(!GameManager.Instance.isPaused);
-
-            if (GameManager.Instance.isPaused)
-                AudioManager.Instance.PlayClip("doubleWhistle");
-            else
-                AudioManager.Instance.PlayClip("whistle");
-        }
     }
 
     // Game clock

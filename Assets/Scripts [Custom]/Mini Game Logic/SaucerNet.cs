@@ -11,7 +11,7 @@ public class SaucerNet : MonoBehaviour
     PassingChallenge pass;
 
     int layer;
-    bool isHit = false;
+    public bool isHit = false;
 
     void Start()
     {
@@ -41,7 +41,7 @@ public class SaucerNet : MonoBehaviour
         }
     }
 
-    void SetIcon(bool _hit) {
+    public void SetIcon(bool _hit) {
         cross.SetActive(!_hit);
         check.SetActive(_hit);
     }

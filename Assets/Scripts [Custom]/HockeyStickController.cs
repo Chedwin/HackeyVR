@@ -24,7 +24,7 @@ public class HockeyStickController : MonoBehaviour {
         AttachStick(GameManager.Instance.stickHand);
     }
 
-    void AttachStick(GameManager.STICKHANDEDNESS _stick)
+    public void AttachStick(GameManager.STICKHANDEDNESS _stick)
     {
         if (_stick == GameManager.STICKHANDEDNESS.LEFT)
         {
