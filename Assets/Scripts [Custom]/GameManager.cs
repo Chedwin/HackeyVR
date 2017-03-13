@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(SteamVR_LoadLevel))]
+
 public class GameManager : MonoBehaviour
 {
     public bool isPaused {
@@ -47,25 +47,26 @@ public class GameManager : MonoBehaviour
 
     void Awake() {
 
-        if (Instance == null)
+        // First we check if there are any other instances conflicting
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
-            DontDestroyOnLoad(this);
+            // If that is the case, we destroy other instances
+            //if (sceneToLoad != SceneManager.GetActiveScene().name)
+            Destroy(gameObject);
         }
-        else
-        {
-            DestroyObject(gameObject);
-            Start();        
-        }
-        level = GetComponent<SteamVR_LoadLevel>();
+
+        // Here we save our singleton instance
+        Instance = this;
+
+        // Furthermore we make sure that we don't destroy between scenes (this is optional)
+        //if (sceneToLoad != SceneManager.GetActiveScene().name)
+        DontDestroyOnLoad(gameObject);
 
     }
-    // this constructor should be prrotected from other classes
-    protected GameManager() {
-        // empty
-    }
-    
+
+
     void Start() {
+        level = GetComponent<SteamVR_LoadLevel>();
         isPaused = false;
         SetPauseState(isPaused);
     }
@@ -86,15 +87,15 @@ public class GameManager : MonoBehaviour
     IEnumerator ChangeScene(string _sceneName, float _time = 0.0f)
     {
         yield return new WaitForSeconds(_time);
+        SceneManager.LoadScene(_sceneName);
+        //if (level == null)
+        //    level = GetComponent<SteamVR_LoadLevel>();
 
-        if (level == null)
-            level = GetComponent<SteamVR_LoadLevel>();
 
-
-        level.levelName = _sceneName;
-        level.fadeInTime = 1.0f;
-        level.fadeOutTime = 1.0f;
-        level.Trigger();
+        //level.levelName = _sceneName;
+        //level.fadeInTime = 1.0f;
+        //level.fadeOutTime = 1.0f;
+        //level.Trigger();
     }
 
     public void SetPauseState(bool _b) {

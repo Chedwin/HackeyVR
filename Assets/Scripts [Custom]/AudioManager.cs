@@ -18,15 +18,18 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
+        // First we check if there are any other instances conflicting
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
-            DontDestroyOnLoad(this);
+            // If that is the case, we destroy other instances            
+            Destroy(gameObject);
         }
-        else
-        {
-            DestroyObject(gameObject);
-        }
+
+        // Here we save our singleton instance
+        Instance = this;
+
+        // Furthermore we make sure that we don't destroy between scenes (this is optional)
+        DontDestroyOnLoad(gameObject);
         efxSource = GetComponent<AudioSource>();
     }
 

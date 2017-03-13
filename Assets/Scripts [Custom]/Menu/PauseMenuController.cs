@@ -39,7 +39,7 @@ public class PauseMenuController : MonoBehaviour {
 
     void Update()
     {
-        if (Controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+        if (Controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip) || Input.GetKeyUp(KeyCode.Space))
         {
             GameManager.Instance.SetPauseState(!GameManager.Instance.isPaused);
             Debug.Log("Paused: " + GameManager.Instance.isPaused);

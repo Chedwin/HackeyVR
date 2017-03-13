@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes [Custom]/PassingChallenge.unity
+- path: Assets/Scenes [Custom]/MainLobby.unity
   isLoaded: 1
   isActive: 1

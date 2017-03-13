@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class StickMenu : MonoBehaviour {
 
-    public RectTransform leftHandMenu, rightHandMenu;
+    public RectTransform leftHandMenu;
+    public RectTransform rightHandMenu;
 
 	// Use this for initialization
 	void Start ()

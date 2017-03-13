@@ -32,14 +32,26 @@ public class PassingChallenge : SkillCompetition
 	// Use this for initialization
 	protected override void Start ()
     {
-        base.Start(); 
 
         finalTime = 0.0f;
         
         saucerNets = GameObject.FindGameObjectsWithTag(saucerNetTag);
-        Debug.Log(saucerNets.Length);
         ShootPuck(transform.position, transform.forward, 2.0f);
+        base.Start();
+        RestartGame();
     }
+
+
+    public override void RestartGame()
+    {
+        base.RestartGame();
+        foreach (GameObject g in saucerNets) {
+            SaucerNet sn = g.GetComponent<SaucerNet>();
+            sn.isHit = false;
+            sn.SetIcon(sn.isHit);
+        }
+    }
+
 
     // Update is called once per frame
     protected override void Update()
