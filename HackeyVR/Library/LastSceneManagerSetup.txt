@@ -1,8 +1,0 @@
-sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes [Custom]/ShootingAccuracy.unity
-=======
-- path: Assets/Scenes [Custom]/FreeMode.unity
->>>>>>> origin/master
-  isLoaded: 1
-  isActive: 1

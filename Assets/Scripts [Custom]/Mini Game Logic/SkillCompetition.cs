@@ -1,0 +1,196 @@
+﻿//*******************************//
+//
+// Class Name:		SkillCompetition
+// Description:		Abstract base class for separate mini games to derive from.
+//
+// Author(s):	    Edwin Chen
+// Special Thanks:  
+//
+// Created:			Jan 28, 2017
+// Last updated:	Feb 22, 2017
+//
+//*******************************//
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public abstract class SkillCompetition : MonoBehaviour
+{
+    #region Fields
+    protected float skillCompTimer;
+
+
+    public Text scoreClock;
+
+    public int playerScore;
+    public Text playerScoreText;
+
+    public Text awayScore;
+
+    public Text shotCounterText;
+
+    public float finalTime = 0.0f;
+
+    [SerializeField]
+    public bool gameStarted {
+        get;
+        set;
+    }
+
+
+    public GameObject puck;
+    public GameObject ball;
+
+    public int shotCount = 0;
+
+    [SerializeField]
+    public bool gameOver {
+        get;
+        protected set;
+    }
+
+    #endregion
+
+    ////////////////////////////////////////////////////////////////////
+
+    #region Methods
+
+    // Start logic here
+    protected virtual void Start() {
+        GameManager.Instance.SetPauseState(false);
+        gameStarted = false;
+        gameOver = false;
+        skillCompTimer = 0;
+        shotCount = 0;
+        SetHomeScoreText(0);
+        SetShotCountText(0);
+
+        AudioManager.Instance.PlayClip("whistle");
+    }
+
+    // Update logic here
+    protected virtual void Update() {
+        if (GameManager.Instance.isPaused == false && gameStarted && !gameOver) {
+            skillCompTimer += Time.deltaTime;
+            SetGameClockText(GameClock.CountdownTimer(skillCompTimer));
+        }
+
+
+        if (Input.GetKeyUp(KeyCode.Alpha9)) {
+            GameManager.Instance.SetPauseState(!GameManager.Instance.isPaused);
+
+            if (GameManager.Instance.isPaused)
+                AudioManager.Instance.PlayClip("doubleWhistle");
+            else
+                AudioManager.Instance.PlayClip("whistle");
+        }
+    }
+
+    // Game clock
+    public void SetGameClockText(string _t) {
+        scoreClock.text = _t;
+    }
+    public void SetGameClockText(float _t)
+    {
+        scoreClock.text = _t.ToString();
+    }
+
+    // player (home) score
+    public void SetHomeScoreText(int _t)
+    {
+        playerScoreText.text = _t.ToString();
+    }
+
+    // shot counter
+    public void SetShotCountText(int _c)
+    {
+        shotCounterText.text = _c.ToString();
+    }
+
+
+    public void ShootPuck(Vector3 _spawnPt, Vector3 _dir, float _delayTime = 0.0f, float _shootSpeed = 0.0f)
+    {
+        StartCoroutine(CoroutinePuck(_spawnPt, _dir, _delayTime, _shootSpeed));
+    }
+
+    IEnumerator CoroutinePuck(Vector3 _spawnPt, Vector3 _dir, float _delayTime = 0.0f, float _shootSpeed = 0.0f) {
+
+        yield return new WaitForSeconds(_delayTime);
+        GameObject newPuck = Instantiate(puck, _spawnPt, Quaternion.identity) as GameObject;
+
+        Rigidbody rb = newPuck.GetComponent<Rigidbody>();
+        rb.AddForce(_dir * _shootSpeed, ForceMode.Impulse);
+    }
+
+    protected void PuckSpawn(Collider col)
+    {
+        if (col.gameObject.tag != "Puck" || GameManager.Instance.isPaused)
+            return;
+
+        if (!gameStarted)
+            gameStarted = true;
+
+        Projectile proj = col.gameObject.GetComponent<Projectile>();
+        if (proj.shot)
+            return;
+
+        proj.shot = true;
+        StartCoroutine(proj.DestroyPuck());
+
+
+        ShootPuck(transform.position, transform.forward, 2.0f);
+        shotCount++;
+        SetShotCountText(shotCount);
+
+        Destroy(col.gameObject, 10.0f);
+    }
+
+
+    public virtual void CheckFinish()
+    {
+        finalTime = skillCompTimer;
+        gameStarted = false;
+        gameOver = true;
+
+        AudioManager.Instance.PlayClip("periodBuzzer");
+    }
+
+
+
+    ///  kind of gross but probably could be fixed later
+    public static SkillCompetition GetSkillRef()
+    {
+        SkillCompetition skillRef;
+
+        if (OneTimerChallenge._oneTimer != null)
+        {
+            skillRef = OneTimerChallenge._oneTimer;
+        }
+        else if (PuckProtectionChallenge._puckProtection != null)
+        {
+            skillRef = PuckProtectionChallenge._puckProtection;
+        }
+        else if (PassingChallenge._passingChallenge != null)
+        {
+            skillRef = PassingChallenge._passingChallenge;
+        }
+        else if (ShootingAccuracyChallenge._shootingAccuracy != null)
+        {
+            skillRef = ShootingAccuracyChallenge._shootingAccuracy;
+        }
+        else if (FreeMode._freeMode != null)
+        {
+            skillRef = FreeMode._freeMode;
+        }
+        else
+        {
+            skillRef = null;
+        }
+        return skillRef;
+    }
+
+    #endregion
+
+} // end class SkillCompetition
