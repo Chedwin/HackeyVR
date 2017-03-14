@@ -5,7 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class MenuControllerHandler : MonoBehaviour {
 
-   
+    HockeyStickController hckStick;
+    public GameObject rightHand;
+    SkillCompetition skillRef;
+
+    void Start()
+    {
+        hckStick = rightHand.GetComponent<HockeyStickController>();
+        skillRef = SkillCompetition.GetSkillRef();
+    }
+
     public void QuitGame()
     {
         if (!GameManager.Instance.isPaused)
@@ -26,15 +35,12 @@ public class MenuControllerHandler : MonoBehaviour {
         if (!GameManager.Instance.isPaused)
             return;
 
-        GameManager.Instance.SwitchScene(SceneManager.GetActiveScene().name, 1.0f);
+        skillRef.RestartGame();
     }
 
 
     public void LeftStick()
     {
-        if (!GameManager.Instance.isPaused)
-            return;
-
         if (GameManager.Instance.stickHand == GameManager.STICKHANDEDNESS.LEFT)
             return;
 
@@ -44,14 +50,14 @@ public class MenuControllerHandler : MonoBehaviour {
         stick.ChangeMenuColor();
 
         GameManager.Instance.SetPauseState(false);
-        GameManager.Instance.SwitchScene(SceneManager.GetActiveScene().name, 1.0f);
+
+
+        hckStick.AttachStick(GameManager.Instance.stickHand);
+        RestartGame();
     }
 
     public void RightStick()
     {
-        if (!GameManager.Instance.isPaused)
-            return;
-
         if (GameManager.Instance.stickHand == GameManager.STICKHANDEDNESS.RIGHT)
             return;
 
@@ -61,7 +67,9 @@ public class MenuControllerHandler : MonoBehaviour {
         stick.ChangeMenuColor();
 
         GameManager.Instance.SetPauseState(false);
-        GameManager.Instance.SwitchScene(SceneManager.GetActiveScene().name, 1.0f);
+
+        hckStick.AttachStick(GameManager.Instance.stickHand);
+        RestartGame();
     }
 
 

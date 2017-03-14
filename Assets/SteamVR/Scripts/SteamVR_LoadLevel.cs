@@ -437,7 +437,7 @@ public class SteamVR_LoadLevel : MonoBehaviour
 				overlay.HideOverlay(loadingScreenOverlayHandle);
 		}
 
-		Destroy(gameObject);
+		//Destroy(gameObject);
 
 		_active = null;
 
