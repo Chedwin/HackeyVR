@@ -27,5 +27,5 @@ public class Projectile : MonoBehaviour {
         yield return new WaitForSeconds(_time);
         Destroy(gameObject);
     }
-	
+
 } // end class Projectile

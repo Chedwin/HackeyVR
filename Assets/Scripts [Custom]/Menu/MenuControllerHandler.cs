@@ -17,24 +17,17 @@ public class MenuControllerHandler : MonoBehaviour {
 
     public void QuitGame()
     {
-        if (!GameManager.Instance.isPaused)
-            return;
+        //if (!GameManager.Instance.isPaused)
+        //    return;
 
-        if (SceneManager.GetActiveScene().name == "MainLobby")
-        {
-            
-        }
-        else
-        {
+        if (SceneManager.GetActiveScene().name != "MainLobby")
             GameManager.Instance.SwitchScene("MainLobby", 1.0f);
-        }
     }
 
     public void RestartGame()
     {
-        if (!GameManager.Instance.isPaused)
-            return;
-
+        //if (!GameManager.Instance.isPaused)
+        //    return;
         skillRef.RestartGame();
     }
 
