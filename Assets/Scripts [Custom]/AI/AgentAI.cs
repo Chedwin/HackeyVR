@@ -25,8 +25,6 @@ public class AgentAI : MonoBehaviour
     [HideInInspector]
     public EnemyState currentState;
 
-    [HideInInspector]
-    public WanderState wanderState;
 
     [HideInInspector]
     public IdleState idleState;
@@ -44,11 +42,7 @@ public class AgentAI : MonoBehaviour
         idleState = new IdleState(this);
         talkState = new TalkState(this);
 
-        if (isCilivian)
-            wanderState = new WanderState(this);
-
-
-        ChangeStateByChance(idleState, wanderState, 50);
+        currentState = idleState;
     }
 
     // Update is called once per frame

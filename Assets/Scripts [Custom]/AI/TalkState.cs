@@ -42,7 +42,6 @@ public class TalkState : EnemyState
             return;
 
         agentAI.anim.SetBool("PlayerTalk", false);
-        agentAI.ChangeStateByChance(agentAI.wanderState, agentAI.idleState, 30);
     }
 
 } // end class TalkState
