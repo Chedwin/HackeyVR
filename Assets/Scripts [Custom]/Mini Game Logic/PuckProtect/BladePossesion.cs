@@ -146,28 +146,28 @@ public class BladePossesion : MonoBehaviour {
         }
     }
 
-    private void OnGUI()
-    {
-        int width = 160;
-        int height = 40;
-        string pucksRemain = (_puckProtRef.maxPuckHit - _puckProtRef.puckstickHit).ToString();
-        GUI.color = Color.blue;
-        GUI.Box(new Rect(Camera.main.pixelWidth - width, Camera.main.pixelHeight - height, 140, height - 10), "Puck Hit Remaining: " + pucksRemain);
+    //private void OnGUI()
+    //{
+    //    int width = 160;
+    //    int height = 40;
+    //    string pucksRemain = (_puckProtRef.maxPuckHit - _puckProtRef.puckstickHit).ToString();
+    //    GUI.color = Color.blue;
+    //    GUI.Box(new Rect(Camera.main.pixelWidth - width, Camera.main.pixelHeight - height, 140, height - 10), "Puck Hit Remaining: " + pucksRemain);
 
-        string time = Mathf.Floor(possTimer + 0.9f).ToString();
-        if (possTimer == 0.0f)
-            time = "0";
+    //    string time = Mathf.Floor(possTimer + 0.9f).ToString();
+    //    if (possTimer == 0.0f)
+    //        time = "0";
 
-        GUI.color = Color.blue;
-        GUI.Box(new Rect(20, Camera.main.pixelHeight - height, 200, height - 10), "Possesion Time Remaining: " + time + " s");
+    //    GUI.color = Color.blue;
+    //    GUI.Box(new Rect(20, Camera.main.pixelHeight - height, 200, height - 10), "Possesion Time Remaining: " + time + " s");
 
-        if (_puckProtRef.gameOver)
-        {
-            GUI.color = Color.red;
-            GUI.Box(new Rect(Camera.main.pixelWidth/2 * 0.8f, 30, 140, height - 10), "GAME OVER");
-        }
+    //    if (_puckProtRef.gameOver)
+    //    {
+    //        GUI.color = Color.red;
+    //        GUI.Box(new Rect(Camera.main.pixelWidth/2 * 0.8f, 30, 140, height - 10), "GAME OVER");
+    //    }
 
-    }
+    //}
 
 
 } // end class BladePossesion

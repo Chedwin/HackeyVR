@@ -19,13 +19,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public Font pauseFont;
+    //public Font pauseFont;
     public GameObject pauseMenu;
 
-    public bool isPaused {
-        get;
-        private set;
-    }
+    public bool isPaused = false;
 
     public enum STICKHANDEDNESS {
         RIGHT = 0,
@@ -107,25 +104,25 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void OnGUI()
-    {
-        if (isPaused && (SceneManager.GetActiveScene().name != "MainLobby")) {
-            int width = 160;
-            int height = 50;
-            Vector2 pauseBoxPos; // = new Vector2((Camera.main.pixelWidth / 2) - width/2, (Camera.main.pixelHeight / 2) - height);
+    //private void OnGUI()
+    //{
+    //    if (isPaused && (SceneManager.GetActiveScene().name != "MainLobby")) {
+    //        int width = 160;
+    //        int height = 50;
+    //        Vector2 pauseBoxPos;// = new Vector2((Camera.main.pixelWidth / 2) - width/2, (Camera.main.pixelHeight / 2) - height/2);
 
-            pauseBoxPos = new Vector2(30, 30);
-            Vector2 size = new Vector2(width, height);
+    //        pauseBoxPos = new Vector2(30, 30);
+    //        Vector2 size = new Vector2(width, height);
 
 
-            GUIStyle pauseFontStyle = new GUIStyle(GUI.skin.box);
-            pauseFontStyle.font = pauseFont;
-            pauseFontStyle.fontSize = 40;
-            pauseFontStyle.alignment = TextAnchor.MiddleCenter;
+    //        GUIStyle pauseFontStyle = new GUIStyle(GUI.skin.box);
+    //        pauseFontStyle.font = pauseFont;
+    //        pauseFontStyle.fontSize = 40;
+    //        //pauseFontStyle.alignment = TextAnchor.MiddleCenter;
 
-            GUI.color = Color.blue;
-            GUI.Box(new Rect(pauseBoxPos, size), "PAUSED", pauseFontStyle);
-        }
-    } 
+    //        GUI.color = Color.blue;
+    //        GUI.Box(new Rect(pauseBoxPos, size), "PAUSED", pauseFontStyle);
+    //    }
+    //} 
 
 } // end class GameManager
