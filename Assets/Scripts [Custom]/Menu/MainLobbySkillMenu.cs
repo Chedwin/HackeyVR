@@ -25,19 +25,21 @@ public class MainLobbySkillMenu : MonoBehaviour {
     {
         GameManager.Instance.sceneToLoad = "ShootingAccuracy";
         GameManager.Instance.SwitchScene(GameManager.Instance.sceneToLoad);
-        
+
     }
 
     public void EnterPuckProtection()
     {
         GameManager.Instance.sceneToLoad = "PuckProtection";
         GameManager.Instance.SwitchScene(GameManager.Instance.sceneToLoad);
+        //HackeySceneManager.Instance.LoadNewLevel("PuckProtection");
     }
 
     public void EnterOneTimer()
     {
         GameManager.Instance.sceneToLoad = "OneTimer";
         GameManager.Instance.SwitchScene(GameManager.Instance.sceneToLoad);
+        //HackeySceneManager.Instance.LoadNewLevel("OneTimer");
     }
 
 

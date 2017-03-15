@@ -46,10 +46,7 @@ public abstract class SkillCompetition : MonoBehaviour
     public int shotCount = 0;
 
     [SerializeField]
-    public bool gameOver {
-        get;
-        protected set;
-    }
+    public bool gameOver = false;
 
     #endregion
 
@@ -70,6 +67,7 @@ public abstract class SkillCompetition : MonoBehaviour
         skillCompTimer = 0;
         shotCount = 0;
         playerScore = 0;
+
         SetGameClockText("00:00");
         SetHomeScoreText(playerScore);
         SetShotCountText(shotCount);
@@ -141,8 +139,6 @@ public abstract class SkillCompetition : MonoBehaviour
         ShootPuck(transform.position, transform.forward, 2.0f);
         shotCount++;
         SetShotCountText(shotCount);
-
-        Destroy(col.gameObject, 10.0f);
     }
 
 
@@ -155,6 +151,17 @@ public abstract class SkillCompetition : MonoBehaviour
         AudioManager.Instance.PlayClip("periodBuzzer");
     }
 
+    public virtual void HighScoreCheck()
+    {
+        HighScore high = GetComponent<HighScore>();
+
+        if (skillCompTimer < high.GetHighScore())
+        {
+            high.SaveHighScore(skillCompTimer);
+            awayScore.text = "New High Score!";
+            high.DisplayHighScore();
+        }
+    }
 
 
     ///  kind of gross but probably could be fixed later
