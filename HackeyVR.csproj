@@ -142,7 +142,9 @@
     <Compile Include="Assets\Scripts [Custom]\AI\IdleState.cs" />
     <Compile Include="Assets\Scripts [Custom]\AI\TalkState.cs" />
     <Compile Include="Assets\Scripts [Custom]\Manager\AudioManager.cs" />
+    <Compile Include="Assets\Scripts [Custom]\Manager\EmergencyExitHandler.cs" />
     <Compile Include="Assets\Scripts [Custom]\Manager\GameManager.cs" />
+    <Compile Include="Assets\Scripts [Custom]\Menu\CanvasCameraMenu.cs" />
     <Compile Include="Assets\Scripts [Custom]\Menu\HackeyLeaderboard.cs" />
     <Compile Include="Assets\Scripts [Custom]\Menu\HighScoreBlock.cs" />
     <Compile Include="Assets\Scripts [Custom]\Menu\HighScoreDisplay.cs" />

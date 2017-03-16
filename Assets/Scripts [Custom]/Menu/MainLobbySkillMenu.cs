@@ -4,42 +4,30 @@ using UnityEngine;
 
 public class MainLobbySkillMenu : MonoBehaviour {
 
-
-
-
-    const string loadScene = "LoadingScene";
-
     public void EnterFreeMode()
     {
-        GameManager.Instance.sceneToLoad = "FreeMode";
-        GameManager.Instance.SwitchScene(GameManager.Instance.sceneToLoad);
+        GameManager.Instance.SwitchScene("FreeMode");
     }
 
     public void EnterPassingChallenge()
     {
-        GameManager.Instance.sceneToLoad = "PassingChallenge";
-        GameManager.Instance.SwitchScene(GameManager.Instance.sceneToLoad);
+        GameManager.Instance.SwitchScene("PassingChallenge");
     }
 
     public void EnterShootingAccuracy()
     {
-        GameManager.Instance.sceneToLoad = "ShootingAccuracy";
-        GameManager.Instance.SwitchScene(GameManager.Instance.sceneToLoad);
+        GameManager.Instance.SwitchScene("ShootingAccuracy");
 
     }
 
     public void EnterPuckProtection()
     {
-        GameManager.Instance.sceneToLoad = "PuckProtection";
-        GameManager.Instance.SwitchScene(GameManager.Instance.sceneToLoad);
-        //HackeySceneManager.Instance.LoadNewLevel("PuckProtection");
+        GameManager.Instance.SwitchScene("PuckProtection");
     }
 
     public void EnterOneTimer()
     {
-        GameManager.Instance.sceneToLoad = "OneTimer";
-        GameManager.Instance.SwitchScene(GameManager.Instance.sceneToLoad);
-        //HackeySceneManager.Instance.LoadNewLevel("OneTimer");
+        GameManager.Instance.SwitchScene("OneTimer");
     }
 
 
