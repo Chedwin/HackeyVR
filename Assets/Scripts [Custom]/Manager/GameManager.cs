@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            isPaused = !isPaused;
+            SetPauseState(!isPaused);
         }
 
     }
@@ -104,25 +104,5 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //private void OnGUI()
-    //{
-    //    if (isPaused && (SceneManager.GetActiveScene().name != "MainLobby")) {
-    //        int width = 160;
-    //        int height = 50;
-    //        Vector2 pauseBoxPos;// = new Vector2((Camera.main.pixelWidth / 2) - width/2, (Camera.main.pixelHeight / 2) - height/2);
-
-    //        pauseBoxPos = new Vector2(30, 30);
-    //        Vector2 size = new Vector2(width, height);
-
-
-    //        GUIStyle pauseFontStyle = new GUIStyle(GUI.skin.box);
-    //        pauseFontStyle.font = pauseFont;
-    //        pauseFontStyle.fontSize = 40;
-    //        //pauseFontStyle.alignment = TextAnchor.MiddleCenter;
-
-    //        GUI.color = Color.blue;
-    //        GUI.Box(new Rect(pauseBoxPos, size), "PAUSED", pauseFontStyle);
-    //    }
-    //} 
 
 } // end class GameManager

@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: ab2083983def78544973e3b37c095c33
+timeCreated: 1489632034
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Marker Scribbles
+  fontNames:
+  - Marker Scribbles
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
