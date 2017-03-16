@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
         Instance = this;
 
         // Furthermore we make sure that we don't destroy between scenes (this is optional)
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         efxSource = GetComponent<AudioSource>();
     }
 
