@@ -6,14 +6,20 @@ using NewtonVR;
 public class PauseMenuController : MonoBehaviour {
 
     private SteamVR_TrackedObject trackedObj;
-    public GameObject pauseMenu;
+    //public GameObject pauseMenu;
 
     void Awake()
     {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
     }
 
+    GameManager gameManager {
+        get { return GameManager.Instance; }
+    }
 
+    AudioManager audioGame {
+        get { return AudioManager.Instance; }
+    }
 
     private SteamVR_Controller.Device Controller
     {
@@ -24,10 +30,16 @@ public class PauseMenuController : MonoBehaviour {
     {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
 
-        if (GameManager.Instance.isPaused)
-            GameManager.Instance.SetPauseState(true);
+        if (gameManager.isPaused)
+        {
+            gameManager.SetPauseState(true);
+            audioGame.PlayClip("doubleWhistle");
+        }
         else
-            GameManager.Instance.SetPauseState(false);
+        {
+            gameManager.SetPauseState(false);
+            audioGame.PlayClip("whistle");
+        }
 
     }
 
@@ -35,7 +47,7 @@ public class PauseMenuController : MonoBehaviour {
     void Update()
     {
         if (Controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip) || Input.GetKeyUp(KeyCode.Space))
-            GameManager.Instance.SetPauseState(!GameManager.Instance.isPaused);
+            gameManager.SetPauseState(!gameManager.isPaused);
     }
 
 } // end class PauseMenuController

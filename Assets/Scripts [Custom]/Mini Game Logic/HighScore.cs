@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class HighScore : MonoBehaviour {
 
@@ -26,20 +27,12 @@ public class HighScore : MonoBehaviour {
             int min = (int)Mathf.Floor(currentHighScore / 60.0f);
             int sec = (int)((currentHighScore % 60.0f));
 
-            string minStr = min.ToString();
-            string secStr = sec.ToString();
-
-            if (min < 10)
-                minStr.PadLeft(2, '0');
-
-            if (sec < 10)
-                secStr.PadLeft(1, '0');
-
-            highScoreText.text = minStr + ":" + secStr;
+            highScoreText.text = min.ToString() + " min " + sec.ToString() + " sec";
             return;
         }
 
-        highScoreText.text = currentHighScore + " s";
+        decimal d = Math.Round((decimal)currentHighScore, 3);
+        highScoreText.text = d.ToString() + " sec";
     }
 
     public void SaveHighScore(float _score)
