@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
         if (Instance != null && Instance != this)
         {
             // If that is the case, we destroy other instances
-            //if (sceneToLoad != SceneManager.GetActiveScene().name)
             Destroy(gameObject);
         }
 
@@ -60,7 +59,7 @@ public class GameManager : MonoBehaviour
 
         // Furthermore we make sure that we don't destroy between scenes (this is optional)
         //if (sceneToLoad != SceneManager.GetActiveScene().name)
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
 

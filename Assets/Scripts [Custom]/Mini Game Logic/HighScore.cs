@@ -16,6 +16,7 @@ public class HighScore : MonoBehaviour {
 	void Start ()
     {
         highScoreName = SceneManager.GetActiveScene().name + "HighScore";
+
         DisplayHighScore();
 	}
 
