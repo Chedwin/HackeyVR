@@ -12,8 +12,14 @@ public class CanvasCameraMenu : MonoBehaviour {
 	}
 
 
-    private void Update()
+    private void OnEnable()
     {
         canvas.worldCamera = GameObject.Find("Controller UI Camera").GetComponent<Camera>();
     }
+
+    //private void Update()
+    //{
+    //    canvas.worldCamera = GameObject.Find("Controller UI Camera").GetComponent<Camera>();
+    //}
+
 }
