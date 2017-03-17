@@ -7,6 +7,7 @@ using System;
 
 public class HighScore : MonoBehaviour {
 
+    const float defaultHighScore = 200.0f;
     public string highScoreName;
     public Text highScoreText;
 
@@ -19,6 +20,22 @@ public class HighScore : MonoBehaviour {
 
         DisplayHighScore();
 	}
+
+
+    // Hold Left CTRL + Left ALT + N to reset high score
+    void Update()
+    {
+
+        if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKey(KeyCode.LeftControl)) {
+            if (Input.GetKeyUp(KeyCode.N)) {
+                float rand = UnityEngine.Random.Range(defaultHighScore / 2.0f, defaultHighScore * 1.25f);
+                SaveHighScore(rand);
+                DisplayHighScore();
+            }
+        }
+
+    }
+
 
     public void DisplayHighScore()
     {
