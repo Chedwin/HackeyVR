@@ -5,12 +5,14 @@ using UnityEngine;
 public class PuckBucket : MonoBehaviour {
 
     public Transform spawnPoint;
+    public GameObject ball;
 
     [Range(0.5f, 3.0f)]
     public float shootSpeed = 0.5f;
 
     public bool canSpawnPuck = true;
     const float puckSpawnDelay = 3.0f;
+    public bool spawnBall = false;
 
     // Use this for initialization
     void Start()
@@ -24,14 +26,31 @@ public class PuckBucket : MonoBehaviour {
         if (canSpawnPuck == false)
             return;
 
-        if (col.gameObject.tag == "HockeyStick")
-            StartCoroutine(WaitPuckDelay(puckSpawnDelay));
+        if (col.gameObject.tag == "HockeyStick") {
+
+            if (spawnBall) {
+                StartCoroutine(SpawnBall(puckSpawnDelay));
+            }
+            else {
+                StartCoroutine(WaitPuckDelay(puckSpawnDelay));
+            }
+        }
     }
 
     IEnumerator WaitPuckDelay(float _time = 1.0f)
     {
         SkillCompetition sk = SkillCompetition.GetSkillRef();
         sk.ShootPuck(spawnPoint.transform.position, spawnPoint.transform.right, 0.0f, shootSpeed);
+
+        canSpawnPuck = false;
+        yield return new WaitForSeconds(_time);
+        canSpawnPuck = true;
+    }
+
+
+    IEnumerator SpawnBall(float _time)
+    {
+        GameObject newPuck = Instantiate(ball, spawnPoint.position, Quaternion.identity) as GameObject;
 
         canSpawnPuck = false;
         yield return new WaitForSeconds(_time);

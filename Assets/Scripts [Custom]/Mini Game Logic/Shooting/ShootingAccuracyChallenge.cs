@@ -5,10 +5,9 @@ using UnityEngine.UI;
 
 public class ShootingAccuracyChallenge : SkillCompetition
 {
-    GameObject[] targets;
-    public string targetPadTag = "TargetPad";
+    public GameObject targetPad;
 
-    //public float finalTime = 0.0f;
+    public Transform[] targets;
 
     // static singleton instance
     public static ShootingAccuracyChallenge _shootingAccuracy {
@@ -34,9 +33,14 @@ public class ShootingAccuracyChallenge : SkillCompetition
     protected override void Start()
     {
         base.Start();
-        targets = GameObject.FindGameObjectsWithTag(targetPadTag);
+        RestartGame();
 
         ShootPuck(transform.position, transform.forward, 2.0f);
+    }
+
+    public override void RestartGame()
+    {
+        base.RestartGame();
     }
 
     // Update is called once per frame

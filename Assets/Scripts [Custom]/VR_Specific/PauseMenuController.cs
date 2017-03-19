@@ -29,25 +29,24 @@ public class PauseMenuController : MonoBehaviour {
     void Start()
     {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
-
-        if (gameManager.isPaused)
-        {
-            gameManager.SetPauseState(true);
-            audioGame.PlayClip("doubleWhistle");
-        }
-        else
-        {
-            gameManager.SetPauseState(false);
-            audioGame.PlayClip("whistle");
-        }
-
     }
 
 
     void Update()
     {
         if (Controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip) || Input.GetKeyUp(KeyCode.Space))
-            gameManager.SetPauseState(!gameManager.isPaused);
+            TogglePause();
     }
 
+
+
+    void TogglePause()
+    {
+        gameManager.SetPauseState(!gameManager.isPaused);
+
+        if (gameManager.isPaused)
+            audioGame.PlayClip("doubleWhistle");
+        else
+            audioGame.PlayClip("whistle");
+    }
 } // end class PauseMenuController

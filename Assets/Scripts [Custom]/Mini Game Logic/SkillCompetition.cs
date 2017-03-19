@@ -67,7 +67,7 @@ public abstract class SkillCompetition : MonoBehaviour
         skillCompTimer = 0;
         shotCount = 0;
         playerScore = 0;
-
+        awayScore.text = "";
         SetGameClockText("00:00");
         SetHomeScoreText(playerScore);
         SetShotCountText(shotCount);
