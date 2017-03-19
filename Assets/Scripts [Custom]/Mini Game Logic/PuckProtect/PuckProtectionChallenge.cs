@@ -39,6 +39,8 @@ public class PuckProtectionChallenge : SkillCompetition
     public int puckstickHit = 0;
     public int maxPuckHit = 3;
 
+    public GameObject pausePanel;
+    public GameObject gameOverPanel;
 
     // static singleton instance
     public static PuckProtectionChallenge _puckProtection {
@@ -70,10 +72,12 @@ public class PuckProtectionChallenge : SkillCompetition
     public override void RestartGame()
     {
         base.RestartGame();
+
         puckTimer = 0.0f;
         shotsFired = 0;
         puckstickHit = 0;
-
+        pausePanel.SetActive(true);
+        gameOverPanel.SetActive(gameOver);
 
         SetShotCountText(shotsFired);
         awayText.text = currentWave.ToString();
@@ -160,6 +164,9 @@ public class PuckProtectionChallenge : SkillCompetition
         Debug.Log("You survived for: " + finalTime + " sec");
 
         GameManager.Instance.SetPauseState(true);
+
+        pausePanel.SetActive(false);
+        gameOverPanel.SetActive(gameOver);
         HighScoreCheck();
     }
 
