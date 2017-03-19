@@ -16,20 +16,20 @@ public class CanvasCameraMenu : MonoBehaviour {
         //canvas.worldCamera = FindPlayerCamera();
     }
 
-    private void OnEnable()
-    {
-        canvas.worldCamera = FindPlayerCamera();
-    }
+    //private void OnEnable()
+    //{
+    //    canvas.worldCamera = FindPlayerCamera();
+    //}
 
     Camera FindPlayerCamera()
     {
         return GameObject.Find("Controller UI Camera").GetComponent<Camera>();
     }
 
-    //private void Update()
-    //{
-    //    canvas.worldCamera = GameObject.Find("Controller UI Camera").GetComponent<Camera>();
-    //}
+    private void Update()
+    {
+        canvas.worldCamera = FindPlayerCamera();
+    }
 
     public void DisableTutorialPanel()
     {
