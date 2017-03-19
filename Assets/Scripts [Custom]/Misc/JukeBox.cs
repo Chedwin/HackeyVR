@@ -30,8 +30,11 @@ public class JukeBox : MonoBehaviour {
             Destroy(gameObject); 
 
         if (soundtrack == null)
-            soundtrack = new List<AlbumCover>();     
-	}
+            soundtrack = new List<AlbumCover>();
+
+        if (startOnAwake)
+            RandomSong();
+    }
 
     void Start()
     {
@@ -40,8 +43,7 @@ public class JukeBox : MonoBehaviour {
         foreach (AudioTrack aud in AudioManager.Instance.musicSoundtrack)
             tracks.Add(aud);
 
-        if (startOnAwake)
-            RandomSong();
+        
     }
 
     void RandomSong()

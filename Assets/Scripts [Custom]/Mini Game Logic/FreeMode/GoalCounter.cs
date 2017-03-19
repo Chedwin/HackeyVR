@@ -24,10 +24,32 @@ public class GoalCounter : MonoBehaviour {
         if (other.gameObject.layer != hockeyPhysicsLayer)
             return;
 
+        Projectile proj = other.GetComponent<Projectile>();
+
+        if (proj.shot == true)
+            return;
+
+        proj.shot = true;
+
         if (netSide == NetSide.Front) {
             free.playerScore++;
             free.SetHomeScoreText(free.playerScore);
         } else {
+            free.backNetScore++;
+            free.awayScore.text = free.backNetScore.ToString();
+        }
+    }
+
+
+    void SetHit()
+    {
+        if (netSide == NetSide.Front)
+        {
+            free.playerScore++;
+            free.SetHomeScoreText(free.playerScore);
+        }
+        else
+        {
             free.backNetScore++;
             free.awayScore.text = free.backNetScore.ToString();
         }

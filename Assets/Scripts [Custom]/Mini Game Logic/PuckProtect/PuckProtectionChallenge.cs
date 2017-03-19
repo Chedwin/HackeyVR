@@ -80,7 +80,7 @@ public class PuckProtectionChallenge : SkillCompetition
         gameOverPanel.SetActive(gameOver);
 
         SetShotCountText(shotsFired);
-        awayText.text = currentWave.ToString();
+
         StartCoroutine(SpawnPlayerPuck());
         GameObject.Find("Blade").GetComponent<BladePossesion>().RestartBlade();
 

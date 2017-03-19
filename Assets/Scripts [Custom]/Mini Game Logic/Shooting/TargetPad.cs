@@ -7,6 +7,7 @@ public class TargetPad : MonoBehaviour {
 
     Rigidbody rb;
     int hockeyLayer;
+    bool isHit = false;
 
 	// Use this for initialization
 	void Start ()
@@ -17,9 +18,13 @@ public class TargetPad : MonoBehaviour {
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Puck" || col.gameObject.layer == hockeyLayer)
+
+        if (col.gameObject.tag == "Puck")// || col.gameObject.layer == hockeyLayer)
         {
-            Debug.Log("collision w/ " + col.gameObject.name);
+            if (isHit == true)
+                return;
+
+            isHit = true;
             rb.useGravity = true;
 
             // Destory the colliding ball/puck
