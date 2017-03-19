@@ -13,7 +13,7 @@ public class AgentAI : MonoBehaviour
     public Animator anim;
 
     [HideInInspector]
-    public NavMeshAgent navAgent;
+    //public NavMeshAgent navAgent;
 
 
     private Transform target;
@@ -37,7 +37,7 @@ public class AgentAI : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        navAgent = GetComponent<NavMeshAgent>();
+        //navAgent = GetComponent<NavMeshAgent>();
 
         idleState = new IdleState(this);
         talkState = new TalkState(this);

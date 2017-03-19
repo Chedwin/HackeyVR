@@ -9,6 +9,7 @@ public class JukeBox : MonoBehaviour {
     public AudioSource jukebox;
     List<AudioTrack> tracks = new List<AudioTrack>();
 
+    const int sampleRate = 44100; // base sample rate of 44100Hz
     int currentlyIndex = 0;
     bool isMusicPlaying = false;
     public Sprite defaultCover;
@@ -34,7 +35,7 @@ public class JukeBox : MonoBehaviour {
 
     void Start()
     {
-        isMusicPlaying = false;
+        isMusicPlaying = jukebox.isPlaying;
 
         foreach (AudioTrack aud in AudioManager.Instance.musicSoundtrack)
             tracks.Add(aud);
@@ -76,23 +77,24 @@ public class JukeBox : MonoBehaviour {
         PlaySong();
     }
 
-    public void NextSong()
+    public void NextSong(float _secDly = 0.0f)
     {
         currentlyIndex++;
         if (currentlyIndex > tracks.Count - 1)
             currentlyIndex = 0;
 
         isMusicPlaying = false;
-        PlaySong();
+        PlaySong(_secDly);
     }
 
     public void PauseSong()
     {
         isMusicPlaying = false;
         jukebox.Pause();
+        SetAlbumCover(ref defaultCover);
     }
 
-    public void PlaySong()
+    public void PlaySong(float _secDelay = 0.0f)
     {
         if (isMusicPlaying)
             return;
@@ -103,7 +105,18 @@ public class JukeBox : MonoBehaviour {
         LoadTrack(ref a);
         Sprite spr = soundtrack[currentlyIndex].albumCover;
         SetAlbumCover(ref spr);
-        jukebox.Play();
+
+
+        ulong delay = (ulong)(sampleRate * _secDelay); // 44100Hz * x = 1 sec * x delay
+        jukebox.Play(delay);
+    }
+
+
+    void Update()
+    {
+        if (isMusicPlaying)
+            if (jukebox.time >= Mathf.Floor(jukebox.clip.length)) 
+                NextSong(1.0f);
     }
 
 } //  end class JukeBox

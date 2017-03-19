@@ -33,7 +33,7 @@ public class TalkState : EnemyState
         if (_other.gameObject.tag != _tag)
             return;
 
-        agentAI.navAgent.transform.LookAt(_other.gameObject.transform);
+        //agentAI.navAgent.transform.LookAt(_other.gameObject.transform);
     }
 
     public override void StateOnTriggerExit(Collider _other, string _tag)
