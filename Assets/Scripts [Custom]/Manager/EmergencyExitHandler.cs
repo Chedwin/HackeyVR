@@ -13,8 +13,9 @@ public class EmergencyExitHandler : MonoBehaviour {
 	// Hold (Left Shift) + (Q) to return to MainLobby (Locker Room) scene
 	void Update ()
     {
-        if (Input.GetKey(KeyCode.LeftControl)) {
-            if (Input.GetKeyUp(KeyCode.Q)) {
+        if (Input.GetMouseButton(0)) {
+            if (Input.GetMouseButton(1))
+            {
                 Debug.Log("Emergency escape activated");
                 emergenyActivated = true;
                 GameManager.Instance.SwitchScene("MainLobby", 2.0f);
