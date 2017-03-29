@@ -17,7 +17,10 @@ public class AdjustStick : MonoBehaviour {
 
     private SteamVR_Controller.Device Controller
     {
-        get { return SteamVR_Controller.Input((int)trackedObj.index); }
+        get
+        {
+            return SteamVR_Controller.Input((int)trackedObj.index);
+        }
     }
 
 

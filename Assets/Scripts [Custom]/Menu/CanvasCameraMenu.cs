@@ -1,5 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//*******************************//
+//
+// Class Name:		CanvasCameraMenu
+// Description:		
+//
+// Author(s):	    Edwin Chen, Andrew Palangio
+// Special Thanks:  
+//
+// Created:			Mar 19, 2017
+// Last updated:	Mar 29, 2017
+//
+//*******************************//
+
 using UnityEngine;
 
 public class CanvasCameraMenu : MonoBehaviour {
@@ -7,19 +18,10 @@ public class CanvasCameraMenu : MonoBehaviour {
     Canvas canvas;
 
 	// Use this for initialization
-	void Awake () {
+	void Awake ()
+    {
         canvas = GetComponent<Canvas>();       
 	}
-
-    private void Start()
-    {
-        //canvas.worldCamera = FindPlayerCamera();
-    }
-
-    //private void OnEnable()
-    //{
-    //    canvas.worldCamera = FindPlayerCamera();
-    //}
 
     Camera FindPlayerCamera()
     {
@@ -28,11 +30,13 @@ public class CanvasCameraMenu : MonoBehaviour {
 
     private void Update()
     {
-        canvas.worldCamera = FindPlayerCamera();
+        if (canvas.worldCamera == null)
+            canvas.worldCamera = FindPlayerCamera();
     }
 
     public void DisableTutorialPanel()
     {
         gameObject.SetActive(false);
     }
-}
+
+} // end class CanvasCameraMenu
