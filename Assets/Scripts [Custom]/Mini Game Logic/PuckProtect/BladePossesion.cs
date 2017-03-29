@@ -7,7 +7,7 @@
 // Special Thanks:  
 //
 // Created:			Jan 27, 2017
-// Last updated:	Feb 28, 2017
+// Last updated:	Mar 29, 2017
 //
 //*******************************//
 
@@ -41,7 +41,6 @@ public class BladePossesion : MonoBehaviour {
     void Start()
     {
         sph = GetComponent<SphereCollider>();
-        //sphRenderer = sphereObj.GetComponent<Renderer>();
         _puckProtRef = PuckProtectionChallenge._puckProtection;
 
         playerPuck = PuckProtectionChallenge._puckProtection.playerPuck;
@@ -116,10 +115,6 @@ public class BladePossesion : MonoBehaviour {
         }
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.DrawWireSphere(transform.position, sphereRadius);
-    //}
 
     IEnumerator LostPuckPossessionCountdown(float _time)
     {
@@ -133,8 +128,14 @@ public class BladePossesion : MonoBehaviour {
 
     public void StickCollision(Collision c)
     {
-        if (c.gameObject.name.Contains("ProjectilePuck")) {
-            
+        if (c.gameObject.name.Contains("ProjectilePuck"))
+        {
+            Projectile proj = c.gameObject.GetComponent<Projectile>();
+
+            if (proj.shot)
+                return;
+
+            proj.shot = true;
             _puckProtRef.puckstickHit++;
 
             audioS.Play();
@@ -145,29 +146,6 @@ public class BladePossesion : MonoBehaviour {
             }
         }
     }
-
-    //private void OnGUI()
-    //{
-    //    int width = 160;
-    //    int height = 40;
-    //    string pucksRemain = (_puckProtRef.maxPuckHit - _puckProtRef.puckstickHit).ToString();
-    //    GUI.color = Color.blue;
-    //    GUI.Box(new Rect(Camera.main.pixelWidth - width, Camera.main.pixelHeight - height, 140, height - 10), "Puck Hit Remaining: " + pucksRemain);
-
-    //    string time = Mathf.Floor(possTimer + 0.9f).ToString();
-    //    if (possTimer == 0.0f)
-    //        time = "0";
-
-    //    GUI.color = Color.blue;
-    //    GUI.Box(new Rect(20, Camera.main.pixelHeight - height, 200, height - 10), "Possesion Time Remaining: " + time + " s");
-
-    //    if (_puckProtRef.gameOver)
-    //    {
-    //        GUI.color = Color.red;
-    //        GUI.Box(new Rect(Camera.main.pixelWidth/2 * 0.8f, 30, 140, height - 10), "GAME OVER");
-    //    }
-
-    //}
 
 
 } // end class BladePossesion

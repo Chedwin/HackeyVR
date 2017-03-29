@@ -6,14 +6,14 @@ using UnityEngine;
 public class TargetPad : MonoBehaviour {
 
     Rigidbody rb;
-    int hockeyLayer;
+    //int hockeyLayer;
     bool isHit = false;
 
 	// Use this for initialization
 	void Start ()
     {
         rb = GetComponent<Rigidbody>();
-        hockeyLayer = LayerMask.NameToLayer("HockeyPhysics");
+        //hockeyLayer = LayerMask.NameToLayer("HockeyPhysics");
     }
 
     private void OnCollisionEnter(Collision col)
