@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes [Custom]/FreeMode.unity
+- path: Assets/Scenes [Custom]/PuckProtection.unity
   isLoaded: 1
   isActive: 1

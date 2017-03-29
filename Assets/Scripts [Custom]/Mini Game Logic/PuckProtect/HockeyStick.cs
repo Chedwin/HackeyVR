@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HockeyStick : MonoBehaviour {
-
+public class HockeyStick : MonoBehaviour
+{
     GameObject blade;
-    //Rigidbody rb;
+    
 
 	// Use this for initialization
-	void Start () {
-        //rb = GetComponent<Rigidbody>();
-
+	void Start ()
+    {
         blade = transform.FindChild("Blade").gameObject;
 	}
 
@@ -19,4 +18,4 @@ public class HockeyStick : MonoBehaviour {
         blade.GetComponent<BladePossesion>().StickCollision(c);
     }
 
-}
+} // end class HockeyStick

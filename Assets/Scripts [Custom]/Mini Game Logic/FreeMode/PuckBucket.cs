@@ -50,7 +50,7 @@ public class PuckBucket : MonoBehaviour {
 
     IEnumerator SpawnBall(float _time)
     {
-        GameObject newPuck = Instantiate(ball, spawnPoint.position, Quaternion.identity) as GameObject;
+        Instantiate(ball, spawnPoint.position, Quaternion.identity);
 
         canSpawnPuck = false;
         yield return new WaitForSeconds(_time);
