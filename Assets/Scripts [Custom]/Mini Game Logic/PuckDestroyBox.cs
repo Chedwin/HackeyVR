@@ -9,7 +9,6 @@ public class PuckDestroyBox : MonoBehaviour
 
         if (col.gameObject.tag == "Puck" || col.gameObject.tag == "Ball") {
             Destroy(col.gameObject);
-            Debug.Log("Destory!!!!!");
         }
     }
 

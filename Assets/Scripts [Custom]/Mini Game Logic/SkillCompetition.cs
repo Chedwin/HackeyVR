@@ -7,7 +7,7 @@
 // Special Thanks:  
 //
 // Created:			Jan 28, 2017
-// Last updated:	Feb 22, 2017
+// Last updated:	Mar 31, 2017
 //
 //*******************************//
 
@@ -48,6 +48,7 @@ public abstract class SkillCompetition : MonoBehaviour
     [SerializeField]
     public bool gameOver = false;
 
+    public bool startDestroyPuck = false;
     #endregion
 
     ////////////////////////////////////////////////////////////////////
@@ -118,6 +119,11 @@ public abstract class SkillCompetition : MonoBehaviour
 
         Rigidbody rb = newPuck.GetComponent<Rigidbody>();
         rb.AddForce(_dir * _shootSpeed, ForceMode.Impulse);
+
+        if (startDestroyPuck) {
+            Projectile p = newPuck.GetComponent<Projectile>();
+            p.StartCoroutine(p.DestroyPuck());
+        }
     }
 
     protected void PuckSpawn(Collider col)
@@ -166,33 +172,22 @@ public abstract class SkillCompetition : MonoBehaviour
 
     ///  kind of gross but probably could be fixed later
     public static SkillCompetition GetSkillRef()
-    {
+    { 
         SkillCompetition skillRef;
 
-        if (OneTimerChallenge._oneTimer != null)
-        {
-            skillRef = OneTimerChallenge._oneTimer;
-        }
-        else if (PuckProtectionChallenge._puckProtection != null)
-        {
-            skillRef = PuckProtectionChallenge._puckProtection;
-        }
-        else if (PassingChallenge._passingChallenge != null)
-        {
-            skillRef = PassingChallenge._passingChallenge;
-        }
-        else if (ShootingAccuracyChallenge._shootingAccuracy != null)
-        {
-            skillRef = ShootingAccuracyChallenge._shootingAccuracy;
-        }
-        else if (FreeMode._freeMode != null)
-        {
-            skillRef = FreeMode._freeMode;
-        }
-        else
-        {
+        if (OneTimerChallenge._oneTimer != null)    
+            skillRef = OneTimerChallenge._oneTimer;       
+        else if (PuckProtectionChallenge._puckProtection != null)        
+            skillRef = PuckProtectionChallenge._puckProtection;      
+        else if (PassingChallenge._passingChallenge != null)       
+            skillRef = PassingChallenge._passingChallenge;       
+        else if (ShootingAccuracyChallenge._shootingAccuracy != null)      
+            skillRef = ShootingAccuracyChallenge._shootingAccuracy;       
+        else if (FreeMode._freeMode != null)      
+            skillRef = FreeMode._freeMode;    
+        else       
             skillRef = null;
-        }
+        
         return skillRef;
     }
 
