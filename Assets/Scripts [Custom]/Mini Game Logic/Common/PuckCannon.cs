@@ -29,7 +29,7 @@ public class PuckCannon : MonoBehaviour
     public void FireCannon()
     {
         SkillCompetition skillRef = SkillCompetition.GetSkillRef();
-        skillRef.ShootPuck(nozzle.position, nozzle.forward, 0.0f, shootSpeed);     
+        skillRef.ShootPuck(nozzle.position, nozzle.forward, 0.0f, shootSpeed);
     }
 
 } // end class PuckCannon

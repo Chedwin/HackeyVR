@@ -31,28 +31,16 @@ public class GoalCounter : MonoBehaviour {
 
         proj.shot = true;
 
-        if (netSide == NetSide.Front) {
-            free.playerScore++;
-            free.SetHomeScoreText(free.playerScore);
-        } else {
-            free.backNetScore++;
-            free.awayScore.text = free.backNetScore.ToString();
-        }
+        SetHit();
     }
 
 
     void SetHit()
     {
         if (netSide == NetSide.Front)
-        {
-            free.playerScore++;
-            free.SetHomeScoreText(free.playerScore);
-        }
+            free.HomeScore();
         else
-        {
-            free.backNetScore++;
-            free.awayScore.text = free.backNetScore.ToString();
-        }
+            free.VisitorScore();
     }
 
 } // end class GoalCounter
