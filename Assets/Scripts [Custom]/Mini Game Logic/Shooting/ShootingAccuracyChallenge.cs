@@ -7,7 +7,7 @@ public class ShootingAccuracyChallenge : SkillCompetition
 {
     public GameObject targetPad;
 
-    public Transform[] targets;
+    public TargetPad[] targets;
 
     // static singleton instance
     public static ShootingAccuracyChallenge _shootingAccuracy {
@@ -33,6 +33,8 @@ public class ShootingAccuracyChallenge : SkillCompetition
     protected override void Start()
     {
         base.Start();
+
+        targets = GameObject.FindObjectsOfType<TargetPad>();
         RestartGame();
 
         ShootPuck(transform.position, transform.forward, 2.0f);
@@ -55,12 +57,22 @@ public class ShootingAccuracyChallenge : SkillCompetition
         PuckSpawn(col);
     }
 
+    public void HitTargetPad()
+    {
+        playerScore++;
+        SetHomeScoreText(playerScore);
+        SoundGoalLight();
+        AudioManager.Instance.PlayClip("goalHorn");
+        CheckFinish();
+    }
+
     public override void CheckFinish()
     {
         if (playerScore == targets.Length)
         {
             base.CheckFinish();
             Debug.Log("Your final time is: " + skillCompTimer + " sec");
+            SoundGoalLight(10.0f);
             base.HighScoreCheck();
         }
     }

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes [Custom]/PuckProtection.unity
+- path: Assets/Scenes [Custom]/PassingChallenge.unity
   isLoaded: 1
   isActive: 1

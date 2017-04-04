@@ -35,11 +35,7 @@ public class SaucerNet : MonoBehaviour
             Projectile proj = other.gameObject.GetComponent<Projectile>();
             Destroy(proj);
 
-            pass.playerScore++;
-            pass.SetHomeScoreText(pass.playerScore);
-            AudioManager.Instance.PlayClip("blip");         
-            pass.CheckFinish();
-
+            pass.ScoreOnNet();
         }
     }
 

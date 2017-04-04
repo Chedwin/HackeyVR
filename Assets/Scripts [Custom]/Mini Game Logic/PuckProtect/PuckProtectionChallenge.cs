@@ -7,7 +7,7 @@
 // Special Thanks:  
 //
 // Created:			Jan 27, 2017
-// Last updated:	Feb 22, 2017
+// Last updated:	Apr 04, 2017
 //
 //*******************************//
 
@@ -168,6 +168,7 @@ public class PuckProtectionChallenge : SkillCompetition
         pausePanel.SetActive(false);
         gameOverPanel.SetActive(gameOver);
         HighScoreCheck();
+        CrowdManager.Instance.AllBoo();
     }
 
     public override void HighScoreCheck()
