@@ -32,10 +32,7 @@ public class TargetPad : MonoBehaviour {
             
             Destroy(gameObject, 1.0f);
 
-            ShootingAccuracyChallenge shtAcc = ShootingAccuracyChallenge._shootingAccuracy;
-            shtAcc.playerScore++;
-            shtAcc.SetHomeScoreText(shtAcc.playerScore);
-            shtAcc.CheckFinish();
+            ShootingAccuracyChallenge._shootingAccuracy.HitTargetPad();
         }
     }
 
