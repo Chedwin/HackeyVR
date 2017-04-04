@@ -9,7 +9,6 @@ public class PassingChallenge : SkillCompetition
     GameObject[] saucerNets;
 
 
-
     // static singleton instance
     public static PassingChallenge _passingChallenge {
         get;
@@ -32,7 +31,6 @@ public class PassingChallenge : SkillCompetition
 	// Use this for initialization
 	protected override void Start ()
     {
-
         finalTime = 0.0f;
         
         saucerNets = GameObject.FindGameObjectsWithTag(saucerNetTag);
@@ -78,8 +76,23 @@ public class PassingChallenge : SkillCompetition
             Debug.Log("Your final time is: " + finalTime + " sec");
 
             GameManager.Instance.SetPauseState(true);
+            SoundGoalLight(10.0f);
+            CrowdManager.Instance.AllCheer();
             base.HighScoreCheck();
         }
+    }
+
+    
+
+    public void ScoreOnNet()
+    {
+        playerScore++;
+        SetHomeScoreText(playerScore);
+        AudioManager.Instance.PlayClip("goalHorn");
+        SoundGoalLight();
+        CrowdManager.Instance.AllCheer();
+
+        CheckFinish();
     }
 
 } // end class PassingChallenge
