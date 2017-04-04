@@ -21,6 +21,8 @@ public class FreeMode : SkillCompetition
 {
     public int backNetScore = 0;
 
+    public GoalLight backLight;
+
     // static singleton instance
     public static FreeMode _freeMode {
         get;
@@ -54,6 +56,31 @@ public class FreeMode : SkillCompetition
     {
         base.Update();
         SetGameClockText(GameClock.DigitalTimeConvert(skillCompTimer));
+    }
+
+
+    public void HomeScore()
+    {
+        playerScore++;
+        SetHomeScoreText(playerScore);
+        SoundGoalLight();
+        AudioManager.Instance.PlayClip("goalHorn");
+        CrowdManager.Instance.AllCheer();
+    }
+
+    public void VisitorScore()
+    {
+        Debug.Log("Visiotototo");
+        backNetScore++;
+        awayScore.text = backNetScore.ToString();
+        SoundVisitorGoalLight();
+        AudioManager.Instance.PlayClip("airHorn");
+        CrowdManager.Instance.AllBoo();
+    }
+
+    public void SoundVisitorGoalLight(float _time = 2.0f)
+    {
+        StartCoroutine(backLight.SoundGoalLight(2.0f));
     }
 
 } // end class FreeMode
