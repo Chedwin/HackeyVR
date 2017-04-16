@@ -118,6 +118,12 @@ public abstract class SkillCompetition : MonoBehaviour
         StartCoroutine(CoroutinePuck(_spawnPt, _dir, _delayTime, _shootSpeed));
     }
 
+    public GameObject GetNewPuck(Vector3 _spawnPt)
+    {
+        GameObject newPuck = Instantiate(puck, _spawnPt, Quaternion.identity) as GameObject;
+        return newPuck;
+    }
+
     IEnumerator CoroutinePuck(Vector3 _spawnPt, Vector3 _dir, float _delayTime = 0.0f, float _shootSpeed = 0.0f) {
 
         yield return new WaitForSeconds(_delayTime);
@@ -128,7 +134,7 @@ public abstract class SkillCompetition : MonoBehaviour
 
         if (startDestroyPuck) {
             Projectile p = newPuck.GetComponent<Projectile>();
-            p.StartCoroutine(p.DestroyPuck());
+            p.StartCoroutine(p.DestroyPuck(15.0f));
         }
     }
 
@@ -145,7 +151,7 @@ public abstract class SkillCompetition : MonoBehaviour
             return;
 
         proj.shot = true;
-        StartCoroutine(proj.DestroyPuck());
+        StartCoroutine(proj.DestroyPuck(20.0f));
 
 
         ShootPuck(transform.position, transform.forward, 2.0f);

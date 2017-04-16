@@ -169,6 +169,7 @@ public class PuckProtectionChallenge : SkillCompetition
         gameOverPanel.SetActive(gameOver);
         HighScoreCheck();
         CrowdManager.Instance.AllBoo();
+        goalLight.SoundGoalLight(6.0f);
     }
 
     public override void HighScoreCheck()
@@ -182,6 +183,7 @@ public class PuckProtectionChallenge : SkillCompetition
             high.DisplayHighScore();
         }
     }
+
 
 
 } // end class PuckProtectionChallenge
